@@ -22,6 +22,10 @@
     <form class="add-items">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
+     
+    </form>
+    <form class="delete-items">
+        <input type="submit" value="Delete All Item">
     </form>
   </div>
 
@@ -29,6 +33,7 @@
     const addItems = document.querySelector('.add-items');
     const itemsList = document.querySelector('.plates');
     const items = JSON.parse(localStorage.getItem('items')) || [];
+    const deleteItems = document.querySelector('.delete-items');
     
     function addItem(e) {
         e.preventDefault();
@@ -37,7 +42,6 @@
             text,
             done: false
         };
-
         items.push(item);
         populateList(items, itemsList);
         localStorage.setItem('items', JSON.stringify(items));
@@ -63,13 +67,17 @@
         localStorage.setItem('items', JSON.stringify(items));
         populateList(items, itemsList);
   }
+    function deleteItem() {
+        localStorage.removeItem('items', JSON.stringify(items));
+        alert("Success😎");
+    }
 
     addItems.addEventListener('submit', addItem);
+    deleteItems.addEventListener('submit', deleteItem);
     itemsList.addEventListener('click', toggleDone);
     populateList(items, itemsList);
 
 </script>
-
 
 </body>
 </html>
