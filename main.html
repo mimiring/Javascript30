@@ -65,8 +65,8 @@ h1 {
 
     navigator.geolocation.watchPosition((data) => {
         console.log(data);
-        speed.textContent = data.coords.speed ? data.coords.speed : 0;
-        arrow.style.transform = `rotate(${data.coords.heading})`;
+        speed.textContent = data.coords.speed ? data.coords.speed.toFixed(2) : 0;
+        arrow.style.transform = `rotate(${data.coords.heading}deg)`;
     }, (err) => {
         console.err(err);
         alert('에러났음ㅋ');
