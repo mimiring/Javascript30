@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="C:\Users\미미링\Downloads\유니버셜.webm" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+  const speed = document.querySelector('.speed');
+  const bar = speed.querySelector('.speed-bar');
+  const video = document.querySelector('.flex');
+  
+  function handleMove(e) {
+    const y = (e.pageY - e.target.offsetTop);
+    const percent = y / e.target.offsetHeight;
+    const min = 0.4;
+    const max = 2;
+    const height = Math.round(percent * 100) + '%';
+    const playbackRate = percent * (max-min) + min;
+
+    bar.style.height = height;
+    bar.textContent = playbackRate.toFixed(2) + 'x';
+    video.playbackRate = playbackRate;
+  }
+
+  speed.addEventListener('mousemove', handleMove);
+
+</script>
+</body>
+</html>
